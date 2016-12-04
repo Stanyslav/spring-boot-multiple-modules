@@ -1,12 +1,10 @@
 package ru.example.core;
 
-public interface ModuleInterface {
+import org.springframework.beans.factory.DisposableBean;
+import org.springframework.beans.factory.InitializingBean;
 
-    public String getName();
+public interface ModuleInterface extends InitializingBean, DisposableBean, Runnable {
 
-    public void install();
+	public String getName();
 
-    public void run();
-
-    public void deinstall();
 }

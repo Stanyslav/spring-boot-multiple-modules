@@ -1,57 +1,33 @@
 package ru.example.migrate;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import ru.example.core.ModuleInterface;
-import ru.example.core.ModuleService;
 
+@Slf4j
 @Component
 public class MigrateModule implements ModuleInterface {
 
-    private static final Logger log = LoggerFactory.getLogger(MigrateModule.class);
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		log.info("module install: {}", getName());
+	}
 
-    @Autowired
-    public MigrateModule(ModuleService service){
-        service.register(this);
-        log.info("Module constructor " + getName());
-    }
+	@Override
+	public void destroy() throws Exception {
+		log.info("module deinstall: {}", getName());
+	}
 
-    public MigrateModule(){
-        log.info("Module constructor " + getName());
-    }
+	@Override
+	public String getName() {
+		return "Migrate";
+	}
 
-    public void init(){
-        log.info("Module init " + getName());
-    }
+	@Override
+	public void run() {
 
-
-    public void register(){
-        log.info(getName() + " Construct");
-    }
-
-    @Override
-    public String getName() {
-        return "Migrate";
-    }
-
-    @Override
-    public void install() {
-        log.info(getName() + "module intalled");
-    }
-
-    @Override
-    public void run() {
-
-        log.info(getName() + " module run");
-        // List<AddressObject> admins =  this.em.createQuery("from AddressObject", AddressObject.class).setMaxResults(10).getResultList();
-        // log.info(admins.toString());
-    }
-
-    @Override
-    public void deinstall() {
-        log.info(getName() + "module deinstall");
-    }
+		log.info("module run: {}", getName());
+		// List<AddressObject> admins =  this.em.createQuery("from AddressObject", AddressObject.class).setMaxResults(10).getResultList();
+		// log.info(admins.toString());
+	}
 }

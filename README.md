@@ -1,1 +1,1 @@
-# Jar файлы нужно складывать в папку module в корне проекта
+# Spring-boot multimodule application

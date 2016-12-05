@@ -3,7 +3,8 @@
 rm -Rf demo/*
 mvn clean package > /dev/null
 
-mkdir -p demo/{libs,modules}
+mkdir -p demo/modules
+mkdir -p demo/libs
 cp migrate/target/*.jar demo/modules/
 cp app/target/*.jar demo/
 cp app/target/dependency/*.jar demo/libs/
